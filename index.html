@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://storage.googleapis.com/hostinger-horizons-assets-prod/f45ec920-5a38-4fed-b465-6d4a9876f706/9fb76018a6a7707af2685c48d03293f0.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayLiv</title>
+    
+    <!-- Fallback OG Tags -->
+    <meta property="og:title" content="PayLiv – E-commerce & Dropshipping en Afrique">
+    <meta property="og:description" content="Créez votre boutique e-commerce, vendez en dropshipping ou via la marketplace.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://payliv.shop/">
+    <meta property="og:image" content="https://storage.googleapis.com/hostinger-horizons-assets-prod/f45ec920-5a38-4fed-b465-6d4a9876f706/adc0bd1dfcc65ced231e230f282d5f14.png">
+
+    <link rel="stylesheet" type="text/css" href="https://paydunya.com/assets/psr/css/psr.paydunya.min.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://paydunya.com/assets/psr/js/psr.paydunya.min.js"></script>
+    <script>
+      function payWithPaydunya(btn) {
+        if (typeof PayDunya === 'undefined' || typeof $ === 'undefined') {
+          console.error("PayDunya or jQuery is not loaded.");
+          alert("Erreur: Le service de paiement n'est pas disponible. Veuillez rafraîchir la page.");
+          return;
+        }
+
+        const planId = btn.dataset.planId;
+        const orderId = btn.dataset.orderId;
+        const refCode = btn.dataset.refCode;
+
+        if (!planId && !orderId) {
+          alert("Erreur: L'identifiant du plan ou de la commande est manquant.");
+          return;
+        }
+
+        let apiUrl = "https://payliv.shop/paydunya-api?";
+        if (planId) {
+          apiUrl += `planId=${planId}`;
+          if (refCode) {
+            apiUrl += `&refCode=${refCode}`;
+          }
+        } else if (orderId) {
+          apiUrl += `orderId=${orderId}`;
+        }
+
+        PayDunya.setup({
+            selector: $(btn),
+            url: apiUrl,
+            method: "GET",
+            displayMode: PayDunya.DISPLAY_IN_POPUP,
+            onSuccess: function(token) {
+                console.log("Token: " + token);
+            },
+            onTerminate: function(ref, token, status) {
+                console.log(ref, token, status);
+                window.location.href = `/payment-status?status=${status}&ref=${ref}&provider=paydunya`;
+            },
+            onError: function (error) {
+                alert("Erreur Inconnue ==> ", error.toString());
+            },
+        }).requestToken();
+      }
+    </script>
+  </body>
+</html>
