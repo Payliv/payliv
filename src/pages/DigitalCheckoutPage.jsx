@@ -109,24 +109,23 @@ import React, { useState, useEffect, useMemo } from 'react';
             
             const paymentPayload = {
                 totalPrice: product.price,
-                article: [ { [product.name.replace(/[^a-zA-Z0-9_]/g, '_').substring(0, 40)]: product.price } ],
-                personal_Info: [{ orderId: insertedOrder.id, storeId: store.id }],
-                numeroSend: customerInfo.phone.trim(),
-                nomclient: customerInfo.name.trim(),
+                article: [{ [product.name.replace(/[^a-zA-Z0-9_]/g, '_').substring(0, 40)]: product.price }],
+                personal_Info: [{ orderId: insertedOrder.id, storeId: store.id, email: customerInfo.email }],
+                numeroSend: customerInfo.phone.replace(/[^0-9]/g, ''),
+                nomclient: customerInfo.name,
                 return_url: `${window.location.origin}/payment-status`,
-                api_url: 'https://www.pay.moneyfusion.net/GS_Money/b625a15aac1daeac/pay/'
+                webhook_url: `${window.location.origin}/api/webhooks/money-fusion`
             };
     
-            const { data, error } = await supabase.functions.invoke('apiweb-api', { body: paymentPayload });
+            const { data, error } = await supabase.functions.invoke('money-fusion-payment', { body: paymentPayload });
             
             if (error) {
                 throw new Error(error.message);
-            } else if (data.url || data.payment_url || data.checkout_url || data.url_paiement) {
-                const paymentUrl = data.url || data.payment_url || data.checkout_url || data.url_paiement;
+            } else if (data.url) {
+                const paymentUrl = data.url;
                 window.location.href = paymentUrl;
             } else {
-                console.error("FusionPay API Response:", data);
-                throw new Error(data.message || "L'URL de paiement FusionPay n'a pas été retournée.");
+                throw new Error(data.message || "L'URL de paiement n'a pas été retournée.");
             }
 
         } catch (error) {

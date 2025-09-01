@@ -1,5 +1,4 @@
-
-    import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
     import { motion } from 'framer-motion';
     import { X, Loader2, ShoppingCart, Truck, CreditCard } from 'lucide-react';
     import { Button } from '@/components/ui/button';
@@ -90,21 +89,20 @@
               totalPrice: total,
               article: [articlesObject],
               personal_Info: [{ orderId: order.id, storeId: store.id, email: customerInfo.email }],
-              numeroSend: customerInfo.phone.trim(),
-              nomclient: customerInfo.name.trim(),
+              numeroSend: customerInfo.phone.replace(/[^0-9]/g, ''),
+              nomclient: customerInfo.name,
               return_url: `${window.location.origin}/payment-status`,
-              api_url: 'https://www.pay.moneyfusion.net/GS_Money/b625a15aac1daeac/pay/'
+              webhook_url: `${window.location.origin}/api/webhooks/money-fusion`
           };
 
-          const { data, error } = await supabase.functions.invoke('apiweb-api', { body: paymentPayload });
+          const { data, error } = await supabase.functions.invoke('money-fusion-payment', { body: paymentPayload });
 
           if (error) {
             throw new Error(error.message);
-          } else if (data.url || data.payment_url || data.checkout_url || data.url_paiement) {
-            const paymentUrl = data.url || data.payment_url || data.checkout_url || data.url_paiement;
+          } else if (data.url) {
+            const paymentUrl = data.url;
             window.location.href = paymentUrl;
           } else {
-            console.error("API Web Response:", data);
             throw new Error(data.message || "L'URL de paiement n'a pas été retournée.");
           }
         } catch (error) {
@@ -195,4 +193,3 @@
     };
 
     export default OrderModal;
-  

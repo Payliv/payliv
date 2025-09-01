@@ -20,7 +20,7 @@ export default function PaymentStatus() {
 
   const verifyApiWebPayment = useCallback(async (token) => {
     try {
-      const { data, error } = await supabase.functions.invoke('apiweb-verify-payment', {
+      const { data, error } = await supabase.functions.invoke('money-fusion-verify', {
         body: { token },
       });
 
