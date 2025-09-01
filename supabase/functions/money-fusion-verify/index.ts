@@ -38,11 +38,21 @@ serve(async (req: Request) => {
       }
     );
 
+    // Read response as text first to handle potential HTML error pages
+    const responseText = await verifyResponse.text();
+
     if (!verifyResponse.ok) {
-      throw new Error(`Verification API error: ${verifyResponse.status} ${verifyResponse.statusText}`);
+      throw new Error(`Verification API error: ${verifyResponse.status} ${verifyResponse.statusText}. Response: ${responseText}`);
     }
 
-    const verificationData = await verifyResponse.json();
+    // Try to parse as JSON, handle cases where response is HTML
+    let verificationData;
+    try {
+      verificationData = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error("Failed to parse response as JSON:", responseText);
+      throw new Error(`Invalid JSON response from Money Fusion API. Received: ${responseText.substring(0, 200)}...`);
+    }
 
     // Return the verification data
     return new Response(
