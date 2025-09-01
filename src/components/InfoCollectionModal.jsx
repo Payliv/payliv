@@ -45,9 +45,9 @@ const InfoCollectionModal = ({ isOpen, onClose, onSuccess }) => {
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px]" aria-labelledby="info-collection-title">
                 <DialogHeader>
-                    <DialogTitle>Informations requises</DialogTitle>
+                    <DialogTitle id="info-collection-title">Informations requises</DialogTitle>
                     <DialogDescription>
                         Pour continuer, nous avons besoin de votre nom complet et de votre numéro WhatsApp. Ces informations seront utilisées pour la transaction.
                     </DialogDescription>

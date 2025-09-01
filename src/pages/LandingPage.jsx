@@ -46,7 +46,6 @@ import React, { useState, useEffect } from 'react';
                 .limit(12);
             
             if (error) {
-                console.error("Error fetching latest products", error);
             } else {
                 setLatestProducts(data);
             }

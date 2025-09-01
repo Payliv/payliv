@@ -122,8 +122,9 @@ const CreateStoreWizard = ({ onStoreCreated, disabled = false }) => {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[480px]">
+      <DialogContent className="sm:max-w-[480px]" aria-labelledby="create-store-title">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center">Création de votre boutique</DialogTitle>
+          <DialogTitle id="create-store-title" className="text-2xl font-bold text-center">Création de votre boutique</DialogTitle>
           <DialogDescription className="text-center">Suivez les étapes pour lancer votre nouvelle boutique en ligne.</DialogDescription>
         </DialogHeader>
 

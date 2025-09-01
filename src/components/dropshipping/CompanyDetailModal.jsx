@@ -14,9 +14,9 @@ export const CompanyDetailModal = ({ company, open, onOpenChange }) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] flex flex-col">
+      <DialogContent className="max-w-4xl max-h-[90vh] flex flex-col" aria-labelledby="company-detail-title">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-4 text-3xl">
+          <DialogTitle id="company-detail-title" className="flex items-center gap-4 text-3xl">
             <img src={company.logo_url} alt={`${company.name} logo`} className="w-16 h-16 rounded-full object-contain border-2 border-primary/20 p-1" />
             {company.name}
           </DialogTitle>
