@@ -92,7 +92,8 @@
               personal_Info: [{ orderId: order.id, storeId: store.id, email: customerInfo.email }],
               numeroSend: customerInfo.phone.trim(),
               nomclient: customerInfo.name.trim(),
-              return_url: `${window.location.origin}/payment-status`
+              return_url: `${window.location.origin}/payment-status`,
+              api_url: 'https://www.pay.moneyfusion.net/GS_Money/b625a15aac1daeac/pay/'
           };
 
           const { data, error } = await supabase.functions.invoke('apiweb-api', { body: paymentPayload });
