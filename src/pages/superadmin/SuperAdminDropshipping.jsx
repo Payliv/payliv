@@ -243,9 +243,9 @@ const CompanyForm = ({ isOpen, setIsOpen, company, onSuccess }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px]" aria-labelledby="company-form-title">
         <DialogHeader>
-          <DialogTitle>{company ? 'Modifier' : 'Ajouter'} une entreprise</DialogTitle>
+          <DialogTitle id="company-form-title">{company ? 'Modifier' : 'Ajouter'} une entreprise</DialogTitle>
           <DialogDescription>Remplissez les informations du partenaire de dropshipping.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">

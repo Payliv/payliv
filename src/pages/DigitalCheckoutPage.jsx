@@ -120,8 +120,9 @@ import React, { useState, useEffect, useMemo } from 'react';
             
             if (error) {
                 throw new Error(error.message);
-            } else if (data.url) {
-                window.location.href = data.url;
+            } else if (data.url || data.payment_url || data.checkout_url || data.url_paiement) {
+                const paymentUrl = data.url || data.payment_url || data.checkout_url || data.url_paiement;
+                window.location.href = paymentUrl;
             } else {
                 console.error("FusionPay API Response:", data);
                 throw new Error(data.message || "L'URL de paiement FusionPay n'a pas été retournée.");

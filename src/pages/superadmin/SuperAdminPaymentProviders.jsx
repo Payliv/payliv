@@ -34,8 +34,9 @@ const PaymentProviderForm = ({ provider, onSave, onCancel }) => {
 
   return (
     <DialogContent className="sm:max-w-[525px]">
+    <DialogContent className="sm:max-w-[525px]" aria-labelledby="payment-provider-title">
       <DialogHeader>
-        <DialogTitle className="flex items-center">
+        <DialogTitle id="payment-provider-title" className="flex items-center">
           <img src={provider.logo_url} alt={provider.name} className="w-6 h-6 mr-2" />
           Configurer {provider.name}
         </DialogTitle>

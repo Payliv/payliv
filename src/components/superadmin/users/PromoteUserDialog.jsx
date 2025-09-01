@@ -41,9 +41,9 @@ import React, { useState, useEffect } from 'react';
 
       return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="bg-card border-border">
+          <DialogContent className="bg-card border-border" aria-labelledby="promote-user-title">
             <DialogHeader>
-              <DialogTitle>Promouvoir un utilisateur</DialogTitle>
+              <DialogTitle id="promote-user-title">Promouvoir un utilisateur</DialogTitle>
               <DialogDescription>
                 Sélectionnez un plan pour promouvoir {user.name || user.email}. Son abonnement sera activé pour la durée du plan.
               </DialogDescription>

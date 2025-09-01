@@ -65,9 +65,9 @@ const ImportProductDialog = ({ product, userStores, onImport, onOpenChange, isOp
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent aria-labelledby="import-product-title">
         <DialogHeader>
-          <DialogTitle>Importer le produit : {product.name}</DialogTitle>
+          <DialogTitle id="import-product-title">Importer le produit : {product.name}</DialogTitle>
           <DialogDescription>Sélectionnez la boutique dans laquelle vous souhaitez importer ce produit.</DialogDescription>
         </DialogHeader>
         <div className="py-4">

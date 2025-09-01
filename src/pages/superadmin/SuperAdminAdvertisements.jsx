@@ -82,9 +82,9 @@ const AdvertisementForm = ({ isOpen, setIsOpen, ad, onSuccess }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px]" aria-labelledby="advertisement-form-title">
         <DialogHeader>
-          <DialogTitle>{ad ? 'Modifier la' : 'Ajouter une'} Publicité</DialogTitle>
+          <DialogTitle id="advertisement-form-title">{ad ? 'Modifier la' : 'Ajouter une'} Publicité</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-6 py-4">
           <div className="grid grid-cols-4 items-center gap-4">

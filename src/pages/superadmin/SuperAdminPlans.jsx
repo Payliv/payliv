@@ -155,8 +155,9 @@ export default function SuperAdminPlans() {
             </Button>
           </DialogTrigger>
           <DialogContent className="glass-effect text-foreground border-border">
+          <DialogContent className="glass-effect text-foreground border-border" aria-labelledby="plan-form-title">
             <DialogHeader>
-              <DialogTitle className="gradient-text">{selectedPlan ? 'Modifier la formule' : 'Créer une nouvelle formule'}</DialogTitle>
+              <DialogTitle id="plan-form-title" className="gradient-text">{selectedPlan ? 'Modifier la formule' : 'Créer une nouvelle formule'}</DialogTitle>
             </DialogHeader>
             <PlanForm plan={selectedPlan} onSave={fetchPlans} closeDialog={() => setIsDialogOpen(false)} />
           </DialogContent>

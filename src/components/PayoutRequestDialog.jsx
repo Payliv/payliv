@@ -132,9 +132,9 @@ import React, { useState, useEffect } from 'react';
 
       return (
         <Dialog open={isOpen} onOpenChange={onOpenChange}>
-          <DialogContent>
+          <DialogContent aria-labelledby="payout-request-title">
             <DialogHeader>
-              <DialogTitle>Demander un retrait</DialogTitle>
+              <DialogTitle id="payout-request-title">Demander un retrait</DialogTitle>
               <DialogDescription>
                 Votre solde disponible est de {balance ? balance.toLocaleString() : 0} FCFA. Les demandes sont traitées automatiquement.
               </DialogDescription>

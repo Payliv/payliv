@@ -8,9 +8,9 @@ import React from 'react';
 
       return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="bg-card border-border">
+          <DialogContent className="bg-card border-border" aria-labelledby="promote-partner-title">
             <DialogHeader>
-              <DialogTitle>Promouvoir en Fournisseur</DialogTitle>
+              <DialogTitle id="promote-partner-title">Promouvoir en Fournisseur</DialogTitle>
               <DialogDescription>
                 Êtes-vous sûr de vouloir promouvoir {user.name || user.email} au rang de fournisseur ? Ils pourront créer une boutique et lister des produits pour le dropshipping.
               </DialogDescription>

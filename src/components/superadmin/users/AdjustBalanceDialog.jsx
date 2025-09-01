@@ -37,9 +37,9 @@ import React, { useState } from 'react';
 
       return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="bg-card border-border">
+          <DialogContent className="bg-card border-border" aria-labelledby="adjust-balance-title">
               <DialogHeader>
-                  <DialogTitle>Ajuster le solde de {user.name}</DialogTitle>
+                  <DialogTitle id="adjust-balance-title">Ajuster le solde de {user.name}</DialogTitle>
                   <DialogDescription>
                       Ajoutez ou retirez manuellement des fonds du solde retirable de l'utilisateur. Cette action est enregistrée.
                   </DialogDescription>

@@ -8,9 +8,9 @@ import React from 'react';
 
       return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="bg-card border-border">
+          <DialogContent className="bg-card border-border" aria-labelledby="delete-user-title">
             <DialogHeader>
-              <DialogTitle>Supprimer l'utilisateur</DialogTitle>
+              <DialogTitle id="delete-user-title">Supprimer l'utilisateur</DialogTitle>
               <DialogDescription>
                 Êtes-vous sûr de vouloir supprimer définitivement {user.name || user.email} ? Cette action est irréversible et supprimera toutes ses données, y compris ses boutiques.
               </DialogDescription>

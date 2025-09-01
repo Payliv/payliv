@@ -107,8 +107,9 @@ import React, { useState, useEffect, useCallback } from 'react';
                                 <Button variant="outline" size="sm">Voir Payload</Button>
                               </DialogTrigger>
                               <DialogContent className="max-w-3xl">
+                              <DialogContent className="max-w-3xl" aria-labelledby="event-details-title">
                                 <DialogHeader>
-                                  <DialogTitle>Détails de l'Événement</DialogTitle>
+                                  <DialogTitle id="event-details-title">Détails de l'Événement</DialogTitle>
                                 </DialogHeader>
                                 <pre className="mt-2 w-full overflow-auto rounded-md bg-slate-950 p-4">
                                   <code className="text-white">{JSON.stringify(event.payload, null, 2)}</code>
